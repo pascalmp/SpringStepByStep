@@ -17,14 +17,14 @@ public class ReviewController {
 
 	@RequestMapping("/review")
 	public String displayReview(@RequestParam("id") long id, Model model) {
-		Review review = myRepository.findById(id);
+		Review review = myRepository.findOne(id);
 		model.addAttribute("selectedReview", review);
 		return "review-view";
 	}
 	
 	@RequestMapping("/all")
 	public String displayAll(Model model){
-	Collection<Review> reviews = myRepository.findAll();
+	Iterable<Review> reviews = myRepository.findAll();
 	model.addAttribute("reviews", reviews);
 	return "all-reviews";
 	}
