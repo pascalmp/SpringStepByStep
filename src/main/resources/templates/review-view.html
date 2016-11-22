@@ -6,10 +6,16 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <p th:text="${selectedReview.id}" />
+<!--    <p th:text="${selectedReview.id}" />
+-->
     <h2><p th:text="'Review of ' + ${selectedReview.title}" /></h2>
     <b><p th:text="'By ' + ${selectedReview.author}" /></b>
     <p th:text="${selectedReview.content}" />
-    <p th:text="${selectedReview.date}" />
+    <br />
+    <br />
+    <p th:text="'DATE OF PUBLICATION: ' + ${selectedReview.date}" />
+    <p th:text="'CATEGORY: ' + ${selectedReview.category.name}" />
+    <br />
+    <a href="/all">Click here for a list of all reviews.</a>
 </body>
 </html>

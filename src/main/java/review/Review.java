@@ -2,16 +2,18 @@ package review;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	
 	private long id;
@@ -20,17 +22,23 @@ public class Review {
 	private String content;
 	private Date date;
 	
-	public Review(String title, String author, String content, Date date){
 		
-		this.title = title;
-		this.author = author;
-		this.content = content;
-		this.date = date;
-	}
+		
+		
+		@ManyToOne(cascade=CascadeType.MERGE)
+		private Category category;
+		
+		protected Review(){}
+		
+		public Review(String title, String author, String content, Date date, Category category){
+			this.title = title;
+			this.author = author;
+			this.content = content;
+			this.date = date;
+			this.category = category;
+		}
 	
-	protected Review(){
-		
-	}
+	
 	
 	
 	public long getId(){
@@ -51,6 +59,10 @@ public class Review {
 	
 	public Date getDate(){
 		return date;
+	}
+	
+	public Category getCategory(){
+		return category;
 	}
 
 }

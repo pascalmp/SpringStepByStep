@@ -10,9 +10,26 @@
 	<h1>All Reviews</h1>
 	<ol>
 		<li th:each="review : ${reviews}">
-			<a th:href="@{/review(id=${review.id})}" th:text="${review.title}" />
+			<a th:href="@{/review(id=${review.id})}" th:text="${review.title} + ' (' + ${review.category.name} + ')'" />
 		</li>
 	</ol>
+	
+	<br />
+	
+	<h1>Reviews By Category</h1>
+	
+	<ul th:each="category : ${categories}">
+	
+	   <h2><li><li th:text=${category.name}" /></h2>
+	   
+	   <li>
+	   <a th:href="@{/review(id=${review.id})}" th:each="review : ${category.reviewsByCategory}" th:text="${review.title}" />
+	   
+	   </li>
+	   
+	   
+	   
+	
 	
 	<h1>With divs: (for demonstration purposes only)</h1>
 	<div th:each="review : ${reviews}" class="reviewEntry">
